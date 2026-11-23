@@ -31,13 +31,34 @@ iOS
   crashes twice, or after 4 different attempts on the same blocked step.
 - Write everything under `results/<persona>/`. Nothing else.
 
-## What to check (adapt to your app)
-1. First launch and onboarding until the main screen.
-2. The persona's goal (personas.json, `goal`).
-3. Layout on THIS device: cut text, buttons hidden by the keyboard, notch or home bar,
+## The app (pais-solo)
+Brazilian app for single fathers: legal questionnaire (pensão alimentícia) in PT-BR only.
+Flow: LoginScreen -> register (name, e-mail, password) -> diagnostic onboarding wizard
+(questions A to I) -> action plan (dashboard). The backend is the production API; it is
+reachable. Create ONLY your own test account with the e-mail pattern below. Never use a
+real e-mail, never delete accounts, never pay anything.
+
+## What to check
+1. First launch and registration until the onboarding starts. E-mail:
+   `success+<persona>@simulator.amazonses.com`.
+2. The adaptive onboarding (the core of this release):
+   - questions are skipped automatically depending on earlier answers (branching);
+     a skipped question that seems necessary, or a visible one that seems useless, is a finding;
+   - answers the app infers from the children you registered show a
+     "Sugerido automaticamente" chip — is it clear and trustworthy?
+   - progress indicator per stage (A to I) and the review summary before the plan;
+   - close the app in the middle of the wizard, reopen it: it must resume on the same
+     question with the answers kept;
+   - questions interpolate real names/ages of the children you typed — wrong or generic
+     text (e.g. "seu filho(a)" when a name exists) is a finding.
+3. The persona's goal (personas.json, `goal`).
+4. Layout on THIS device: cut text, buttons hidden by the keyboard, notch or home bar,
    large text sizes, dark mode contrast.
-4. Error and empty states: no network answer, empty lists, wrong input.
-5. Accessibility: when `screen.py` ends with an `accessibility check` line (controls with no
+5. Error and empty states: no network answer (airplane mode), wrong input, duplicated
+   e-mail, weak password.
+6. Sensitive questions (health/disability of a child): a transition screen and explicit
+   consent must appear before them (LGPD). Missing consent is a major finding.
+7. Accessibility: when `screen.py` ends with an `accessibility check` line (controls with no
    name, touch targets under 48 dp / 44 pt), look at those controls on the screenshot. Report
    each kind once, with the screens where you saw it: minor, unless it stops a task.
 
