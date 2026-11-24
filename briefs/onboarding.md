@@ -21,8 +21,12 @@ Never clear app data or reinstall. A blocked step is a finding: write it down, c
 thing, try again. Write everything under `results/<persona>/`.
 
 ## Setup
-- Register with e-mail `success+<persona>@simulator.amazonses.com` (any strong password),
-  name as your persona would write it. You reach the onboarding wizard right after.
+- Register with e-mail `success+<persona>+<UNIQUE>@simulator.amazonses.com`, where `<UNIQUE>` is
+  a fresh suffix you invent (e.g. the current date plus a word: `nov24-zebra`) so the address was
+  NEVER used in a previous run — accounts from earlier runs are already registered and will block
+  you. Any strong password; name as your persona would write it.
+- Write the exact e-mail you used in your report so the team can find the account later.
+- You reach the onboarding wizard right after registering.
 
 ## What to verify (in this order)
 1. **Branching:** answer so a later question must disappear (e.g. say you have NO
