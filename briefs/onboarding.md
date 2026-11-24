@@ -4,6 +4,22 @@ You are a QA tester playing ONE persona (find yours in personas.json with the
 PERSONA id you were given). Drive the phone where the app is installed and open.
 Budget: about 30 actions, screenshot after EVERY action, then write the report.
 
+## Device commands (this brief is self-contained — use exactly these)
+
+Android
+- See the screen: `python3 scripts/android/screen.py results/<persona> <NN>` (NN = 01, 02...).
+  Read the PNG it writes, then the element list (centres in real pixels).
+- Tap: `adb shell input tap X Y` - Swipe/scroll: `adb input swipe X1 Y1 X2 Y2 400` → use
+  `adb shell input swipe X1 Y1 X2 Y2 400`
+- Back: `adb shell input keyevent KEYCODE_BACK` - Type: `python3 scripts/android/type.py "text"`
+iOS
+- See the screen: `python3 scripts/ios/screen.py results/<persona> <NN>` (positions in points).
+- `bash scripts/ios/gesture.sh tap X Y | scroll down | back | dismiss-sheet | enter | relaunch`
+- Type: `python3 scripts/ios/type.py "text"` (tap the field first).
+
+Never clear app data or reinstall. A blocked step is a finding: write it down, change ONE
+thing, try again. Write everything under `results/<persona>/`.
+
 ## Setup
 - Register with e-mail `success+<persona>@simulator.amazonses.com` (any strong password),
   name as your persona would write it. You reach the onboarding wizard right after.
